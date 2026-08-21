@@ -471,6 +471,7 @@
       "single_global_label": "ignore",
       "unannotated": "error",
       "unconnected_wire_endpoint": "warning",
+      "undefined_netclass": "error",
       "unit_value_mismatch": "error",
       "unresolved_variable": "error",
       "wire_dangling": "error"
@@ -481,7 +482,7 @@
     "pinned_symbol_libs": []
   },
   "meta": {
-    "filename": "Arduino_Nano.kicad_pro",
+    "filename": "Bil v 1,0.kicad_pro",
     "version": 3
   },
   "net_settings": {
