@@ -1,1 +1,7 @@
-# c-I-hardly-know-her
+# Autonomonomous car by C++, I hardly know her
+
+### Code
+
+### PCB-schematics
+
+
