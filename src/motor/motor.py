@@ -35,15 +35,15 @@ def stop():
 
 
 def forward():
-    mc.set_speed(1, 150)
+    mc.set_speed(1, 400)
     mc.set_speed(2, 100)
-    mc.set_speed(3, -100)
+    mc.set_speed(3, 100)
 
 
 def backward():
     mc.set_speed(1, -150)
     mc.set_speed(2, -100)
-    mc.set_speed(3, 100)
+    mc.set_speed(3, -100)
 
 
 def button_state():

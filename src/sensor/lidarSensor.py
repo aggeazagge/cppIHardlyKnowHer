@@ -13,9 +13,9 @@ i2c = machine.I2C(
 
 
 # XSHUT-pin
-xshut_left = machine.Pin(10, machine.Pin.OUT)
-xshut_middle = machine.Pin(8, machine.Pin.OUT)
-xshut_right = machine.Pin(9, machine.Pin.OUT)
+xshut_left = machine.Pin(8, machine.Pin.OUT)
+xshut_middle = machine.Pin(6, machine.Pin.OUT)
+xshut_right = machine.Pin(7, machine.Pin.OUT)
 
 # turn off all sensor
 xshut_left.value(0)

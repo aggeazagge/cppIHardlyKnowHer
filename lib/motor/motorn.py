@@ -5,6 +5,7 @@ import os
 import struct
 import time
 
+
 try:
   from enum import Enum
   def enum_value(x): return x.value
