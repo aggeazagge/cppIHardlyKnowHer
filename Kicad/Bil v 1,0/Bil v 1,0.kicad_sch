@@ -2457,6 +2457,207 @@
 			)
 			(embedded_fonts no)
 		)
+		(symbol "Switch:SW_Nidec_CAS-120A1"
+			(pin_names
+				(offset 1)
+				(hide yes)
+			)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(in_pos_files yes)
+			(duplicate_pin_numbers_are_jumpers no)
+			(property "Reference" "SW"
+				(at 0 4.318 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Value" "SW_Nidec_CAS-120A1"
+				(at 0 -5.08 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Footprint" "Button_Switch_SMD:Nidec_Copal_CAS-120A"
+				(at 0 -10.16 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Datasheet" "https://www.nidec-components.com/e/catalog/switch/cas.pdf"
+				(at 0 -7.62 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Description" "Switch, single pole double throw"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "ki_keywords" "switch single-pole double-throw spdt ON-ON"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "ki_fp_filters" "*Nidec?Copal?CAS?120A*"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(symbol "SW_Nidec_CAS-120A1_0_1"
+				(circle
+					(center -2.032 0)
+					(radius 0.4572)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy -1.651 0.254) (xy 1.651 2.286)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(circle
+					(center 2.032 2.54)
+					(radius 0.4572)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(circle
+					(center 2.032 -2.54)
+					(radius 0.4572)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+			)
+			(symbol "SW_Nidec_CAS-120A1_1_1"
+				(rectangle
+					(start -3.175 3.81)
+					(end 3.175 -3.81)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type background)
+					)
+				)
+				(pin passive line
+					(at 5.08 -2.54 180)
+					(length 2.54)
+					(name "C"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at -5.08 0 0)
+					(length 2.54)
+					(name "B"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 5.08 2.54 180)
+					(length 2.54)
+					(name "A"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "3"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
 		(symbol "power:+3.3V"
 			(power global)
 			(pin_numbers
@@ -3067,10 +3268,10 @@
 		(uuid "2c4afd02-44eb-4edc-9d0d-5c641f76f593")
 	)
 	(junction
-		(at 29.21 113.03)
+		(at 31.75 113.03)
 		(diameter 0)
 		(color 0 0 0 0)
-		(uuid "b63f5c39-bbc4-487a-be4a-d6402d379c5d")
+		(uuid "eeae9f33-aceb-4b26-8754-e67efe18c556")
 	)
 	(no_connect
 		(at 17.78 31.75)
@@ -3091,6 +3292,10 @@
 	(no_connect
 		(at 71.12 31.75)
 		(uuid "384bbaa4-3e1d-4ce6-97d7-be057a7f6f48")
+	)
+	(no_connect
+		(at 26.67 114.3)
+		(uuid "3f1e47fb-c798-4cb3-a400-977fb1ed8df9")
 	)
 	(no_connect
 		(at 17.78 36.83)
@@ -3264,7 +3469,7 @@
 	)
 	(wire
 		(pts
-			(xy 68.58 113.03) (xy 71.12 113.03)
+			(xy 72.39 113.03) (xy 74.93 113.03)
 		)
 		(stroke
 			(width 0)
@@ -3374,7 +3579,7 @@
 	)
 	(wire
 		(pts
-			(xy 48.26 115.57) (xy 45.72 115.57)
+			(xy 52.07 115.57) (xy 49.53 115.57)
 		)
 		(stroke
 			(width 0)
@@ -3564,7 +3769,7 @@
 	)
 	(wire
 		(pts
-			(xy 29.21 107.95) (xy 29.21 113.03)
+			(xy 31.75 107.95) (xy 31.75 113.03)
 		)
 		(stroke
 			(width 0)
@@ -3611,6 +3816,16 @@
 			(type default)
 		)
 		(uuid "726d7ade-598a-4cf0-ae7e-5c58ee394dfe")
+	)
+	(wire
+		(pts
+			(xy 31.75 114.3) (xy 31.75 113.03)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "77553bc4-cb24-416b-a06c-e50346f0c65c")
 	)
 	(wire
 		(pts
@@ -3864,7 +4079,17 @@
 	)
 	(wire
 		(pts
-			(xy 29.21 128.27) (xy 29.21 129.54)
+			(xy 31.75 113.03) (xy 52.07 113.03)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "ab22bd61-6f6b-4c9f-a6c0-687aa00fdb0c")
+	)
+	(wire
+		(pts
+			(xy 29.21 134.62) (xy 29.21 135.89)
 		)
 		(stroke
 			(width 0)
@@ -3904,7 +4129,7 @@
 	)
 	(wire
 		(pts
-			(xy 71.12 115.57) (xy 71.12 119.38)
+			(xy 74.93 115.57) (xy 74.93 119.38)
 		)
 		(stroke
 			(width 0)
@@ -4024,16 +4249,6 @@
 	)
 	(wire
 		(pts
-			(xy 29.21 113.03) (xy 29.21 118.11)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "d1d4c96a-6dd3-4eaf-9e0d-ca014d6e08bc")
-	)
-	(wire
-		(pts
 			(xy 55.88 158.75) (xy 60.96 158.75)
 		)
 		(stroke
@@ -4064,7 +4279,7 @@
 	)
 	(wire
 		(pts
-			(xy 68.58 115.57) (xy 71.12 115.57)
+			(xy 72.39 115.57) (xy 74.93 115.57)
 		)
 		(stroke
 			(width 0)
@@ -4114,7 +4329,7 @@
 	)
 	(wire
 		(pts
-			(xy 45.72 115.57) (xy 45.72 119.38)
+			(xy 49.53 115.57) (xy 49.53 119.38)
 		)
 		(stroke
 			(width 0)
@@ -4141,16 +4356,6 @@
 			(type default)
 		)
 		(uuid "f2d07dfa-81ba-4e9f-95eb-7ee0348e7119")
-	)
-	(wire
-		(pts
-			(xy 29.21 113.03) (xy 48.26 113.03)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "f315fe41-5a19-45dd-be36-4ffb5ec911be")
 	)
 	(wire
 		(pts
@@ -4633,7 +4838,7 @@
 		(uuid "c7c752d9-073c-43c6-aa61-7daad5f6cc5f")
 	)
 	(label "DC-DC out"
-		(at 71.12 113.03 0)
+		(at 74.93 113.03 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -5174,7 +5379,7 @@
 	)
 	(symbol
 		(lib_id "power:GND")
-		(at 71.12 119.38 0)
+		(at 74.93 119.38 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -5184,7 +5389,7 @@
 		(dnp no)
 		(uuid "2d73ceb6-ccea-4c65-86cf-4342b417f0cb")
 		(property "Reference" "#PWR015"
-			(at 71.12 125.73 0)
+			(at 74.93 125.73 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5195,7 +5400,7 @@
 			)
 		)
 		(property "Value" "GND"
-			(at 71.12 123.19 0)
+			(at 74.93 123.19 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -5205,7 +5410,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 71.12 119.38 0)
+			(at 74.93 119.38 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5216,7 +5421,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 71.12 119.38 0)
+			(at 74.93 119.38 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5227,7 +5432,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
-			(at 71.12 119.38 0)
+			(at 74.93 119.38 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5328,7 +5533,7 @@
 	)
 	(symbol
 		(lib_id "power:GND")
-		(at 29.21 129.54 0)
+		(at 29.21 135.89 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -5338,7 +5543,7 @@
 		(dnp no)
 		(uuid "4311a484-efd5-44de-8cb8-07723ab35eba")
 		(property "Reference" "#PWR04"
-			(at 29.21 135.89 0)
+			(at 29.21 142.24 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5349,7 +5554,7 @@
 			)
 		)
 		(property "Value" "GND"
-			(at 29.21 133.35 0)
+			(at 29.21 139.7 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -5359,7 +5564,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 29.21 129.54 0)
+			(at 29.21 135.89 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5370,7 +5575,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 29.21 129.54 0)
+			(at 29.21 135.89 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5381,7 +5586,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
-			(at 29.21 129.54 0)
+			(at 29.21 135.89 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5998,7 +6203,7 @@
 	)
 	(symbol
 		(lib_id "power:GND")
-		(at 45.72 119.38 0)
+		(at 49.53 119.38 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -6008,7 +6213,7 @@
 		(dnp no)
 		(uuid "64ea257f-8dce-4bde-a6ab-08f4c6fda400")
 		(property "Reference" "#PWR014"
-			(at 45.72 125.73 0)
+			(at 49.53 125.73 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6019,7 +6224,7 @@
 			)
 		)
 		(property "Value" "GND"
-			(at 45.72 123.19 0)
+			(at 49.53 123.19 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -6029,7 +6234,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 45.72 119.38 0)
+			(at 49.53 119.38 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6040,7 +6245,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 45.72 119.38 0)
+			(at 49.53 119.38 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6051,7 +6256,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
-			(at 45.72 119.38 0)
+			(at 49.53 119.38 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6153,7 +6358,7 @@
 	)
 	(symbol
 		(lib_id "Device:Battery")
-		(at 29.21 123.19 0)
+		(at 29.21 129.54 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -6164,7 +6369,7 @@
 		(fields_autoplaced yes)
 		(uuid "7668975d-0bc3-4af8-8099-1bad107d8af7")
 		(property "Reference" "BT1"
-			(at 33.02 121.3484 0)
+			(at 33.02 127.6984 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -6175,7 +6380,7 @@
 			)
 		)
 		(property "Value" "Battery"
-			(at 33.02 123.8884 0)
+			(at 33.02 130.2384 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -6186,7 +6391,7 @@
 			)
 		)
 		(property "Footprint" "Connector_JST:JST_EH_B2B-EH-A_1x02_P2.50mm_Vertical"
-			(at 29.21 121.666 90)
+			(at 29.21 128.016 90)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6197,7 +6402,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 29.21 121.666 90)
+			(at 29.21 128.016 90)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6208,7 +6413,7 @@
 			)
 		)
 		(property "Description" "Multiple-cell battery"
-			(at 29.21 123.19 0)
+			(at 29.21 129.54 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6219,7 +6424,7 @@
 			)
 		)
 		(property "Sim.Device" "V"
-			(at 29.21 123.19 0)
+			(at 29.21 129.54 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6230,7 +6435,7 @@
 			)
 		)
 		(property "Sim.Type" "DC"
-			(at 29.21 123.19 0)
+			(at 29.21 129.54 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6241,7 +6446,7 @@
 			)
 		)
 		(property "Sim.Pins" "1=+ 2=-"
-			(at 29.21 123.19 0)
+			(at 29.21 129.54 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6651,6 +6856,91 @@
 			(project "Bil v 1,0"
 				(path "/0d35483a-0b12-46cc-b9f2-896fd6831779"
 					(reference "#PWR02")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Switch:SW_Nidec_CAS-120A1")
+		(at 29.21 119.38 90)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "8a5607b5-6eb6-4a1a-b4a8-ca0dc93c3198")
+		(property "Reference" "SW2"
+			(at 34.29 118.1099 90)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Value" "power switch"
+			(at 34.29 120.6499 90)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Footprint" "Button_Switch_THT:SW_Slide-03_Wuerth-WS-SLTV_10x2.5x6.4_P2.54mm"
+			(at 39.37 119.38 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" "https://www.nidec-components.com/e/catalog/switch/cas.pdf"
+			(at 36.83 119.38 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Switch, single pole double throw"
+			(at 29.21 119.38 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "2"
+			(uuid "acf2e281-e9bf-4403-a081-6fe81152b8a0")
+		)
+		(pin "3"
+			(uuid "05569d9d-9807-435b-ae78-5b00da7481b1")
+		)
+		(pin "1"
+			(uuid "286a0abf-ea5c-4197-be91-a0f318c82525")
+		)
+		(instances
+			(project "Bil v 1,0"
+				(path "/0d35483a-0b12-46cc-b9f2-896fd6831779"
+					(reference "SW2")
 					(unit 1)
 				)
 			)
@@ -7606,7 +7896,7 @@
 	)
 	(symbol
 		(lib_id "power:VCC")
-		(at 29.21 107.95 0)
+		(at 31.75 107.95 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -7616,7 +7906,7 @@
 		(dnp no)
 		(uuid "f8a43fd5-bd5b-480e-a2a8-6557c5a9b970")
 		(property "Reference" "#PWR011"
-			(at 29.21 111.76 0)
+			(at 31.75 111.76 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7627,7 +7917,7 @@
 			)
 		)
 		(property "Value" "VCC"
-			(at 29.21 104.14 90)
+			(at 31.75 104.14 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -7638,7 +7928,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 29.21 107.95 0)
+			(at 31.75 107.95 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7649,7 +7939,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 29.21 107.95 0)
+			(at 31.75 107.95 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7660,7 +7950,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"VCC\""
-			(at 29.21 107.95 0)
+			(at 31.75 107.95 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7804,7 +8094,7 @@
 	)
 	(symbol
 		(lib_id "Auto_car_library:DC-DC")
-		(at 52.07 111.76 0)
+		(at 55.88 111.76 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -7815,7 +8105,7 @@
 		(fields_autoplaced yes)
 		(uuid "fa98f779-0fa5-47a3-a9de-036cf66577e6")
 		(property "Reference" "U2"
-			(at 54.61 106.68 0)
+			(at 58.42 106.68 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -7825,7 +8115,7 @@
 			)
 		)
 		(property "Value" ""
-			(at 54.61 109.22 0)
+			(at 58.42 109.22 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -7835,7 +8125,7 @@
 			)
 		)
 		(property "Footprint" "Auto_car:DC_DC"
-			(at 52.07 111.76 0)
+			(at 55.88 111.76 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7846,7 +8136,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 52.07 111.76 0)
+			(at 55.88 111.76 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7857,7 +8147,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 52.07 111.76 0)
+			(at 55.88 111.76 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
