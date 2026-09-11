@@ -7347,7 +7347,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "cebf10cb-620d-43f3-a94a-fe57af77646a")
-		(property "Reference" "M2"
+		(property "Reference" "Servo"
 			(at 219.71 140.5368 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7414,7 +7414,7 @@
 		(instances
 			(project "Bil v 1,0"
 				(path "/0d35483a-0b12-46cc-b9f2-896fd6831779"
-					(reference "M2")
+					(reference "Servo")
 					(unit 1)
 				)
 			)
@@ -7746,7 +7746,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "df123dfe-37cf-4f2e-aeaf-b8f227be9b3b")
-		(property "Reference" "M4"
+		(property "Reference" "M2"
 			(at 208.28 93.9799 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7810,7 +7810,7 @@
 		(instances
 			(project "Bil v 1,0"
 				(path "/0d35483a-0b12-46cc-b9f2-896fd6831779"
-					(reference "M4")
+					(reference "M2")
 					(unit 1)
 				)
 			)
