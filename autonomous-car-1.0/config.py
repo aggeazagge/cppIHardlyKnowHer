@@ -8,7 +8,7 @@ I2C_SDA_PIN = 11
 I2C_SCL_PIN = 12
 
 # Servo settings
-SERVO_MIN_DEG = -70.0
+SERVO_MIN_DEG = 10.0
 SERVO_MAX_DEG = 180.0
 
 # Motor bus setttings
@@ -19,7 +19,7 @@ MOTOR_MAX_ACCEL = 300
 MOTOR_MAX_DECEL = 140 # 140 max utan att skickade tillbaka för mycket
 
 # Motor speed (Motoron units, 0..800)
-CRUISE_SPEED = 45 0       # normal forward speed on a clear path
+CRUISE_SPEED = 250       # normal forward speed on a clear path
 MOTOR_MAX_SPEED = 800
 
 # Braking (Motoron units, 0..800 -- separate scale from speed above: 0 = coast,
@@ -37,8 +37,8 @@ START_PIN_PULL = "down"    # "up" | "down" | None -- internal pull resistor on G
 # Steering angles handed to Servo.write() -- CALIBRATE THESE ON THE BENCH.
 # They must sit inside SERVO_MIN_DEG..SERVO_MAX_DEG.
 STEER_CENTER_DEG = 90.0  # wheels pointing straight
-STEER_LEFT_DEG = 120.0    # full left lock
-STEER_RIGHT_DEG = 60.0  # full right lock
+STEER_LEFT_DEG = 60.0    # full left lock
+STEER_RIGHT_DEG = 120.0  # full right lock
 
 # Servo pulse-width limits (microseconds) and update rate for this servo
 SERVO_MIN_US = 544.0
@@ -51,14 +51,40 @@ SERVO_FREQ_HZ = 50
 DIST_MAX = 1200          # readings >= this (or invalid) -> "open"; the VL53L0X
                          # is not trusted past ~1.2 m
 DIST_CLEAR = 650         # middle sensor >= this ahead -> full cruise
-DIST_SLOW = 380          # middle sensor < this -> slow down + commit to the turn
+DIST_SLOW = 500          # middle sensor < this -> slow down + commit to the turn
 DIST_STOP = 170          # middle sensor <= this -> crawl speed, still turning
 
 # Control tuning
 STEER_SPAN_MM = 500.0     # (dr - dl) difference that maps to full steering lock
-CORNER_STEER_GAIN = 2.5   # extra steering commitment when middle < DIST_SLOW
+CORNER_STEER_GAIN = 3.5   # extra steering commitment when middle < DIST_SLOW
 TURN_SLOWDOWN = 0.6       # speed *= (1 - TURN_SLOWDOWN * |steer fraction|)
 LOOP_DELAY_MS = 10        # the blocking sensor reads already pace the loop
+
+# VL53L0X measurement timing budget (microseconds). The driver enforces a
+# hard floor of 20000 (see measurement_timing_budget setter in vl53l0x.py);
+# using that floor minimizes per-measurement latency at the cost of some
+# range/precision headroom this ~1 m track doesn't need. Combined with
+# continuous ranging mode (lib/lidar_sensor.py), this is what makes
+# las_avstand() fast.
+SENSOR_TIMING_BUDGET_US = 20000
+
+# Rolling-average window (samples) for each distance sensor. Smooths out
+# single spiky/erroneous readings so the car doesn't jerk the wheel the
+# wrong way, at the cost of a little lag before a genuine corner registers.
+# Bench-tunable: if the car starts clipping corners, try a smaller value
+# (e.g. 3 or 2).
+SENSOR_AVG_SAMPLES = 4
+
+# Hill "blackout" handling: on an incline the car pitches nose-up and all
+# three sensors can point over the nearby walls, reading DIST_MAX ("open")
+# even though a wall is still right there. BLACKOUT_CONFIRM_FRAMES is how
+# many consecutive all-maxed loop iterations are required before treating
+# it as a blackout (vs. a genuinely open straight or a one-frame fluke).
+# HILL_BLIND_SPEED is the speed used while blind -- lower than CRUISE_SPEED
+# so less ground (and lateral drift) is covered before sensors regain lock,
+# but high enough not to stall climbing the incline. Both bench-tunable.
+BLACKOUT_CONFIRM_FRAMES = 5
+HILL_BLIND_SPEED = 150
 
 # Forward crawl speed: the minimum forward speed used while turning hard.
 # There is no reverse -- this must be low enough, and DIST_SLOW/DIST_STOP/

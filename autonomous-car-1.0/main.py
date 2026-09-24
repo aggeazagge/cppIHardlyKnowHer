@@ -55,17 +55,6 @@ def start_requested():
     return start_pin.value() == active_level
 
 
-def sanitize(mm):
-    """Clamp a raw VL53L0X reading to a usable range.
-
-    Out-of-range measurements come back as 0 or a large number; treat both as
-    'nothing in the way' (DIST_MAX).
-    """
-    if mm <= 0 or mm >= config.DIST_MAX:
-        return config.DIST_MAX
-    return mm
-
-
 def set_steer(angle_deg):
     lo = min(config.STEER_LEFT_DEG, config.STEER_RIGHT_DEG)
     hi = max(config.STEER_LEFT_DEG, config.STEER_RIGHT_DEG)
@@ -132,6 +121,8 @@ def compute(dl, dm, dr):
 def run():
     print("autonomous loop ready -- waiting for start signal")
     was_running = False
+    last_steer_deg = config.STEER_CENTER_DEG
+    blackout_streak = 0
     try:
         while True:
             if not start_requested():
@@ -139,6 +130,8 @@ def run():
                     print("start signal off -- stopping")
                 stop_all()
                 was_running = False
+                last_steer_deg = config.STEER_CENTER_DEG
+                blackout_streak = 0
                 time.sleep_ms(config.LOOP_DELAY_MS)
                 continue
 
@@ -146,12 +139,29 @@ def run():
                 print("start signal on -- driving")
                 was_running = True
 
-            dl, dm, dr = (sanitize(x) for x in lidar_sensor.las_avstand())
+            dl, dm, dr = lidar_sensor.las_avstand()
 
-            steer_deg, speed = compute(dl, dm, dr)
+            # All three sensors maxed for several frames in a row -> almost
+            # certainly a hill blind spot (beams pointing over the walls),
+            # not a genuinely open track. Hold the last heading and crawl
+            # instead of trusting "open" and cruising at full speed.
+            if dl >= config.DIST_MAX and dm >= config.DIST_MAX and dr >= config.DIST_MAX:
+                blackout_streak += 1
+            else:
+                blackout_streak = 0
+
+            if blackout_streak >= config.BLACKOUT_CONFIRM_FRAMES:
+                steer_deg = last_steer_deg
+                speed = config.HILL_BLIND_SPEED
+                blackout_tag = " BLACKOUT"
+            else:
+                steer_deg, speed = compute(dl, dm, dr)
+                last_steer_deg = steer_deg
+                blackout_tag = ""
+
             set_steer(steer_deg)
             drive(speed)
-            print(dl, dm, dr, "->", round(steer_deg), int(speed))
+            print(dl, dm, dr, "->", round(steer_deg), int(speed), blackout_tag)
 
             time.sleep_ms(config.LOOP_DELAY_MS)
     except (KeyboardInterrupt, Exception) as e:
