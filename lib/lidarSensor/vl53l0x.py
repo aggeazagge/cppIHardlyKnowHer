@@ -154,7 +154,6 @@ class VL53L0X:
         # pylint: disable=too-many-statements
         self._i2c = i2c
         self._addr = address
-        self._continuous_mode = False
         self._reset()
 
         self.io_timeout_ms = io_timeout_s * 1000
@@ -554,50 +553,6 @@ class VL53L0X:
             timechecker.check()
         # assumptions: Linearity Corrective Gain is 1000 (default)
         # fractional ranging is not enabled
-        range_mm = self._read_u16(_RESULT_RANGE_STATUS + 10)
-        self._write_u8(_SYSTEM_INTERRUPT_CLEAR, 0x01)
-        return range_mm
-
-    def start_continuous(self):
-        """Start back-to-back continuous ranging: the sensor free-runs in the
-        background and each subsequent `read()` just picks up the latest
-        result instead of driving a whole single-shot measurement. Based on
-        pololu's VL53L0X::startContinuous().
-        """
-        for pair in (
-            (0x80, 0x01),
-            (0xFF, 0x01),
-            (0x00, 0x00),
-            (0x91, self._stop_variable),
-            (0x00, 0x01),
-            (0xFF, 0x00),
-            (0x80, 0x00),
-        ):
-            self._write_u8(pair[0], pair[1])
-        self._write_u8(_SYSRANGE_START, 0x02)  # back-to-back continuous mode
-        self._continuous_mode = True
-
-    def stop_continuous(self):
-        """Stop continuous ranging and return the sensor to single-shot mode.
-        Based on pololu's VL53L0X::stopContinuous().
-        """
-        self._write_u8(_SYSRANGE_START, 0x01)  # single-shot mode
-        for pair in ((0xFF, 0x01), (0x00, 0x00), (0x91, 0x00), (0x00, 0x01), (0xFF, 0x00)):
-            self._write_u8(pair[0], pair[1])
-        self._continuous_mode = False
-
-    def read(self):
-        """Read the latest result while in continuous mode.
-
-        Unlike `range`, this doesn't re-trigger a measurement -- it just
-        waits for (and usually finds already-waiting) the next result the
-        free-running sensor produced, so it's cheap I2C traffic instead of a
-        full ~measurement-timing-budget-long blocking cycle. Call
-        `start_continuous()` once before using this.
-        """
-        timechecker = TimeoutCheck(self.io_timeout_ms)
-        while (self._read_u8(_RESULT_INTERRUPT_STATUS) & 0x07) == 0:
-            timechecker.check()
         range_mm = self._read_u16(_RESULT_RANGE_STATUS + 10)
         self._write_u8(_SYSTEM_INTERRUPT_CLEAR, 0x01)
         return range_mm
