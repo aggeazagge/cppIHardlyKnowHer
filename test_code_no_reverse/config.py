@@ -19,7 +19,7 @@ MOTOR_MAX_ACCEL = 300
 MOTOR_MAX_DECEL = 140 # 140 max utan att skickade tillbaka för mycket
 
 # Motor speed (Motoron units, 0..800)
-CRUISE_SPEED = 45 0       # normal forward speed on a clear path
+CRUISE_SPEED = 300       # normal forward speed on a clear path
 MOTOR_MAX_SPEED = 800
 
 # Braking (Motoron units, 0..800 -- separate scale from speed above: 0 = coast,
@@ -59,6 +59,32 @@ STEER_SPAN_MM = 500.0     # (dr - dl) difference that maps to full steering lock
 CORNER_STEER_GAIN = 2.5   # extra steering commitment when middle < DIST_SLOW
 TURN_SLOWDOWN = 0.6       # speed *= (1 - TURN_SLOWDOWN * |steer fraction|)
 LOOP_DELAY_MS = 10        # the blocking sensor reads already pace the loop
+
+# VL53L0X measurement timing budget (microseconds). The driver enforces a
+# hard floor of 20000 (see measurement_timing_budget setter in vl53l0x.py);
+# using that floor minimizes per-measurement latency at the cost of some
+# range/precision headroom this ~1 m track doesn't need. Combined with
+# continuous ranging mode (lib/lidar_sensor.py), this is what makes
+# las_avstand() fast.
+SENSOR_TIMING_BUDGET_US = 33000
+
+# Rolling-average window (samples) for each distance sensor. Smooths out
+# single spiky/erroneous readings so the car doesn't jerk the wheel the
+# wrong way, at the cost of a little lag before a genuine corner registers.
+# Bench-tunable: if the car starts clipping corners, try a smaller value
+# (e.g. 3 or 2).
+SENSOR_AVG_SAMPLES = 4
+
+# Hill "blackout" handling: on an incline the car pitches nose-up and all
+# three sensors can point over the nearby walls, reading DIST_MAX ("open")
+# even though a wall is still right there. BLACKOUT_CONFIRM_FRAMES is how
+# many consecutive all-maxed loop iterations are required before treating
+# it as a blackout (vs. a genuinely open straight or a one-frame fluke).
+# HILL_BLIND_SPEED is the speed used while blind -- lower than CRUISE_SPEED
+# so less ground (and lateral drift) is covered before sensors regain lock,
+# but high enough not to stall climbing the incline. Both bench-tunable.
+BLACKOUT_CONFIRM_FRAMES = 5
+HILL_BLIND_SPEED = 200
 
 # Forward crawl speed: the minimum forward speed used while turning hard.
 # There is no reverse -- this must be low enough, and DIST_SLOW/DIST_STOP/
