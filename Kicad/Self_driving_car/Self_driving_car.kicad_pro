@@ -505,7 +505,7 @@
     "pinned_symbol_libs": []
   },
   "meta": {
-    "filename": "Bil v 1,0.kicad_pro",
+    "filename": "Self_driving_car.kicad_pro",
     "version": 3
   },
   "net_settings": {
@@ -664,8 +664,8 @@
     "subpart_id_separator": 0,
     "top_level_sheets": [
       {
-        "filename": "Bil v 1,0.kicad_sch",
-        "name": "Bil v 1,0",
+        "filename": "Self_driving_car.kicad_sch",
+        "name": "Self_driving_car",
         "uuid": "0d35483a-0b12-46cc-b9f2-896fd6831779"
       }
     ],
