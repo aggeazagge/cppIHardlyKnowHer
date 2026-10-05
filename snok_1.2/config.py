@@ -20,6 +20,7 @@ MOTOR_MAX_DECEL = 140 # 140 max utan att skickade tillbaka för mycket
 
 # Motor speed (Motoron units, 0..800)
 CRUISE_SPEED = 250       # normal forward speed on a clear path
+BACK_SPEED = -250
 MOTOR_MAX_SPEED = 800
 
 # Braking (Motoron units, 0..800 -- separate scale from speed above: 0 = coast,
@@ -51,9 +52,9 @@ SERVO_FREQ_HZ = 50
 # hundred mm away, so they feed steering only (see compute()).
 DIST_MAX = 1200          # readings >= this (or invalid) -> "open"; the VL53L0X
                          # is not trusted past ~1.2 m
-DIST_CLEAR = 650         # middle sensor >= this ahead -> full cruise
-DIST_SLOW = 500          # middle sensor < this -> slow down + commit to the turn
-DIST_STOP = 170          # middle sensor <= this -> crawl speed, still turning
+DIST_CLEAR = 1000         # middle sensor >= this ahead -> full cruise
+DIST_SLOW = 750          # middle sensor < this -> slow down + commit to the turn
+DIST_STOP = 300          # middle sensor <= this -> crawl speed, still turning
 
 # Control tuning
 STEER_SPAN_MM = 500.0     # (dr - dl) difference that maps to full steering lock
@@ -67,7 +68,7 @@ LOOP_DELAY_MS = 10        # the blocking sensor reads already pace the loop
 # range/precision headroom this ~1 m track doesn't need. Combined with
 # continuous ranging mode (lib/lidar_sensor.py), this is what makes
 # las_avstand() fast.
-SENSOR_TIMING_BUDGET_US = 33000
+SENSOR_TIMING_BUDGET_US = 20000
 # DO NOT lower this or the signal rate limit (driver default 0.25 MCPS)
 # without the read timeout below in place: aggressive tuning (e.g. signal
 # rate 0.1) made a sensor stop reporting data and the car froze.
@@ -75,7 +76,7 @@ SENSOR_TIMING_BUDGET_US = 33000
 # VL53L4CX (left/right sensors) timing budget in milliseconds, 10..200 (see
 # set_timing() in lib/vl53l4cx.py). Matches the middle sensor's ~33 ms so all
 # three deliver new data at about the same rate.
-SIDE_SENSOR_TIMING_BUDGET_MS = 33
+SIDE_SENSOR_TIMING_BUDGET_MS = 20
 
 # Rolling-median window (samples) for each distance sensor. A single
 # spiky/erroneous reading is dropped entirely instead of dragging the value
@@ -100,10 +101,10 @@ SENSOR_MAX_FAILS = 10
 # so less ground (and lateral drift) is covered before sensors regain lock,
 # but high enough not to stall climbing the incline. Both bench-tunable.
 BLACKOUT_CONFIRM_FRAMES = 5
-HILL_BLIND_SPEED = 200
+HILL_BLIND_SPEED = 250
 
 # Forward crawl speed: the minimum forward speed used while turning hard.
 # There is no reverse -- this must be low enough, and DIST_SLOW/DIST_STOP/
 # CORNER_STEER_GAIN tight enough, that the turn radius actually clears the
 # wall. Bench-tune these together if it still clips a corner.
-TURN_CRAWL_SPEED = 260
+TURN_CRAWL_SPEED = 250
