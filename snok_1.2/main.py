@@ -115,6 +115,90 @@ def compute(dl, dm, dr):
     speed = max(speed, config.TURN_CRAWL_SPEED)
 
     return steer_deg, speed
+def backWard():
+    print("BACKAR!")
+
+    # Håll hjulen raka
+    set_steer(config.STEER_CENTER_DEG)
+
+    # Backa
+    drive(config.BACK_SPEED)
+    time.sleep_ms(1000)
+
+    # Stoppa
+    stop_all()
+
+    # Nollställ fastkörningshistoriken
+    global stuck_start, last_middle_distance
+
+    stuck_start = None
+    last_middle_distance = None
+
+
+
+
+STUCK_DISTANCE = 250       # mm - hinder närmare än 25 cm
+STUCK_TIME_MS = 2000       # 2 sekunder
+STUCK_CHANGE_MM = 15        # max förändring i avstånd
+
+
+stuck_start = None
+last_middle_distance = None
+
+
+STUCK_DISTANCE = 250       # mm
+STUCK_TIME_MS = 2000       # 2 sekunder
+STUCK_CHANGE_MM = 15       # max förändring
+
+stuck_start = None
+last_distances = None
+
+def check_stuck(dl, dm, dr, speed):
+    global stuck_start, last_middle_distance
+
+    # Om bilen inte kör framåt -> återställ
+    if speed <= 0:
+        stuck_start = None
+        last_middle_distance = None
+        return False
+
+    now = time.ticks_ms()
+
+    # Vi bryr oss bara om ett hinder nära framför bilen
+    if dm > STUCK_DISTANCE:
+        stuck_start = None
+        last_middle_distance = dm
+        return False
+
+    # Första mätningen
+    if last_middle_distance is None:
+        last_middle_distance = dm
+        stuck_start = now
+        return False
+
+    # Har avståndet ändrats tillräckligt?
+    change = abs(dm - last_middle_distance)
+
+    if change > STUCK_CHANGE_MM:
+        # Bilen rör sig -> inte fast
+        stuck_start = None
+        last_middle_distance = dm
+        return False
+
+    # Avståndet ändras nästan inte
+    if stuck_start is None:
+        stuck_start = now
+
+    elapsed = time.ticks_diff(now, stuck_start)
+
+    if elapsed >= STUCK_TIME_MS:
+        print("FASTNAT FRAMFÖR! Avstånd:", dm)
+        stuck_start = None
+        last_middle_distance = dm
+        return True
+
+    last_middle_distance = dm
+    return False
 
 
 # mätte spänningen på data pinnen sda
@@ -153,11 +237,15 @@ def run():
                 blackout_streak = 0
 
             if blackout_streak >= config.BLACKOUT_CONFIRM_FRAMES:
-                steer_deg = last_steer_deg
+                steer_deg = last_steer_deg/2
                 speed = config.HILL_BLIND_SPEED
                 blackout_tag = " BLACKOUT"
             else:
                 steer_deg, speed = compute(dl, dm, dr)
+                if check_stuck(dl, dm, dr, speed):
+                    print("Bilen verkar ha fastnat -> backar!")
+                    backWard()
+                    continue
                 last_steer_deg = steer_deg
                 blackout_tag = ""
 
