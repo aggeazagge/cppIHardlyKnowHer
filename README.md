@@ -31,6 +31,10 @@ and `lib/` to the board, for example with Thonny. All tunable values are in `con
 car's circuit board: the schematic, the PCB layout, and the custom symbol
 libraries (`Auto_car_library`, `motron_i2c_3motor`).
 
+![alt text](image.png)
+
+![alt text](image-1.png)
+
 ### License
 
 See [LICENSE](LICENSE).
