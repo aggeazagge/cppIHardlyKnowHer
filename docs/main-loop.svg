@@ -1,0 +1,129 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="680" viewBox="0 0 800 680" role="img" aria-label="Flowchart of run(): check start signal, read sensors, check for blackout, compute steering and speed, check if stuck, then set steering and drive and sleep 10 ms before looping.">
+<style>
+.box { fill: #ffffff; stroke: #9aa6b2; stroke-width: 1.2; }
+.hw { fill: #f3f5f7; stroke: #9aa6b2; stroke-width: 1.2; }
+.group { fill: none; stroke: #9aa6b2; stroke-width: 1.2; stroke-dasharray: 5 4; }
+.main-group { fill: #e4ecf8; stroke: #1f5fbf; stroke-width: 1.4; }
+.ctl { fill: #ffffff; stroke: #1f5fbf; stroke-width: 1.2; }
+.safe { fill: #fbeedd; stroke: #b35c00; stroke-width: 1.2; }
+.t { fill: #17202a; font: 500 13px "IBM Plex Sans", system-ui, sans-serif; }
+.tc { fill: #17202a; font: 500 13px "IBM Plex Mono", ui-monospace, Consolas, monospace; }
+.s { fill: #5b6875; font: 11px "IBM Plex Mono", ui-monospace, Consolas, monospace; }
+.gt { fill: #17202a; font: 600 14px "IBM Plex Sans Condensed", "Arial Narrow", sans-serif; letter-spacing: .02em; }
+.lbl { fill: #5b6875; font: 11px "IBM Plex Mono", ui-monospace, Consolas, monospace; }
+.lbl-a { fill: #1f5fbf; font: 500 11px "IBM Plex Mono", ui-monospace, Consolas, monospace; }
+.lbl-s { fill: #b35c00; font: 500 11px "IBM Plex Mono", ui-monospace, Consolas, monospace; }
+.w { fill: none; stroke: #17202a; stroke-width: 1.3; }
+.wa { fill: none; stroke: #1f5fbf; stroke-width: 1.6; }
+.ws { fill: none; stroke: #b35c00; stroke-width: 1.5; }
+.wd { fill: none; stroke: #9aa6b2; stroke-width: 1.2; stroke-dasharray: 4 4; }
+.head { fill: #17202a; }
+.head-a { fill: #1f5fbf; }
+.head-s { fill: #b35c00; }
+.head-d { fill: #9aa6b2; }
+.bgr { fill: #ffffff; }
+@media (prefers-color-scheme: dark) {
+  .box { fill: #182029; stroke: #5b6977; stroke-width: 1.2; }
+  .hw { fill: #11161c; stroke: #5b6977; stroke-width: 1.2; }
+  .group { fill: none; stroke: #5b6977; stroke-width: 1.2; stroke-dasharray: 5 4; }
+  .main-group { fill: #1d2b40; stroke: #7eaaf0; stroke-width: 1.4; }
+  .ctl { fill: #182029; stroke: #7eaaf0; stroke-width: 1.2; }
+  .safe { fill: #3a2a17; stroke: #f0a24f; stroke-width: 1.2; }
+  .t { fill: #e3e9ef; font: 500 13px "IBM Plex Sans", system-ui, sans-serif; }
+  .tc { fill: #e3e9ef; font: 500 13px "IBM Plex Mono", ui-monospace, Consolas, monospace; }
+  .s { fill: #93a1ae; font: 11px "IBM Plex Mono", ui-monospace, Consolas, monospace; }
+  .gt { fill: #e3e9ef; font: 600 14px "IBM Plex Sans Condensed", "Arial Narrow", sans-serif; letter-spacing: .02em; }
+  .lbl { fill: #93a1ae; font: 11px "IBM Plex Mono", ui-monospace, Consolas, monospace; }
+  .lbl-a { fill: #7eaaf0; font: 500 11px "IBM Plex Mono", ui-monospace, Consolas, monospace; }
+  .lbl-s { fill: #f0a24f; font: 500 11px "IBM Plex Mono", ui-monospace, Consolas, monospace; }
+  .w { fill: none; stroke: #e3e9ef; stroke-width: 1.3; }
+  .wa { fill: none; stroke: #7eaaf0; stroke-width: 1.6; }
+  .ws { fill: none; stroke: #f0a24f; stroke-width: 1.5; }
+  .wd { fill: none; stroke: #5b6977; stroke-width: 1.2; stroke-dasharray: 4 4; }
+  .head { fill: #e3e9ef; }
+  .head-a { fill: #7eaaf0; }
+  .head-s { fill: #f0a24f; }
+  .head-d { fill: #5b6977; }
+  .bgr { fill: #182029; }
+}
+</style>
+<rect width="800" height="680" class="bgr"/>
+        <defs>
+          <marker id="fr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" class="head"/></marker>
+          <marker id="fra" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" class="head-a"/></marker>
+          <marker id="frs" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" class="head-s"/></marker>
+        </defs>
+
+        <!-- N0 -->
+        <rect x="240" y="16" width="180" height="40" rx="20" class="box"/>
+        <text x="330" y="41" class="t" text-anchor="middle">Loop iteration</text>
+        <path d="M330 56 V80" class="wa" marker-end="url(#fra)"/>
+
+        <!-- D1 start -->
+        <polygon points="330,80 450,120 330,160 210,120" class="ctl"/>
+        <text x="330" y="117" class="t" text-anchor="middle">Start signal on?</text>
+        <text x="330" y="134" class="s" text-anchor="middle">GPIO17</text>
+        <path d="M450 120 H520" class="ws" marker-end="url(#frs)"/>
+        <text x="485" y="112" class="lbl-s" text-anchor="middle">no</text>
+        <rect x="520" y="96" width="220" height="48" rx="3" class="safe"/>
+        <text x="534" y="116" class="tc">stop_all()</text>
+        <text x="534" y="133" class="s">brake 800 · center wheels</text>
+        <path d="M740 120 H770 V640 H420" class="ws" marker-end="url(#frs)"/>
+
+        <path d="M330 160 V184" class="wa" marker-end="url(#fra)"/>
+        <text x="338" y="177" class="lbl-a">yes</text>
+
+        <!-- N2 read -->
+        <rect x="230" y="184" width="200" height="48" rx="3" class="ctl"/>
+        <text x="330" y="204" class="tc" text-anchor="middle">las_avstand()</text>
+        <text x="330" y="221" class="s" text-anchor="middle">→ dl, dm, dr (mm)</text>
+        <path d="M330 232 V256" class="wa" marker-end="url(#fra)"/>
+
+        <!-- D2 blackout -->
+        <polygon points="330,256 450,296 330,336 210,296" class="ctl"/>
+        <text x="330" y="293" class="t" text-anchor="middle">All three ≥1200 mm</text>
+        <text x="330" y="310" class="s" text-anchor="middle">for 5 frames?</text>
+        <path d="M450 296 H520" class="ws" marker-end="url(#frs)"/>
+        <text x="485" y="288" class="lbl-s" text-anchor="middle">yes</text>
+        <rect x="520" y="272" width="220" height="48" rx="3" class="safe"/>
+        <text x="534" y="292" class="t">Hill blackout</text>
+        <text x="534" y="309" class="s">steer = last/2 · speed 250</text>
+        <path d="M630 320 V564 H430" class="ws" marker-end="url(#frs)"/>
+
+        <path d="M330 336 V360" class="wa" marker-end="url(#fra)"/>
+        <text x="338" y="353" class="lbl-a">no</text>
+
+        <!-- N3 compute -->
+        <rect x="230" y="360" width="200" height="48" rx="3" class="ctl"/>
+        <text x="330" y="380" class="tc" text-anchor="middle">compute()</text>
+        <text x="330" y="397" class="s" text-anchor="middle">→ steer_deg, speed</text>
+        <path d="M330 408 V436" class="wa" marker-end="url(#fra)"/>
+
+        <!-- D3 stuck -->
+        <polygon points="330,436 450,476 330,516 210,476" class="ctl"/>
+        <text x="330" y="473" class="t" text-anchor="middle">Stuck?</text>
+        <text x="330" y="490" class="s" text-anchor="middle">dm&lt;250, Δ&lt;15 mm, 2 s</text>
+        <path d="M210 476 H186" class="ws" marker-end="url(#frs)"/>
+        <text x="198" y="468" class="lbl-s" text-anchor="middle">yes</text>
+        <rect x="16" y="452" width="170" height="48" rx="3" class="safe"/>
+        <text x="28" y="472" class="tc">backWard()</text>
+        <text x="28" y="489" class="s">−250 for 1 s, stop</text>
+        <path d="M101 452 V36 H200" class="ws"/>
+        <text x="109" y="440" class="lbl-s">continue</text>
+
+        <path d="M330 516 V540" class="wa" marker-end="url(#fra)"/>
+        <text x="338" y="533" class="lbl-a">no</text>
+
+        <!-- N4 actuate -->
+        <rect x="230" y="540" width="200" height="48" rx="3" class="ctl"/>
+        <text x="330" y="560" class="tc" text-anchor="middle">set_steer() · drive()</text>
+        <text x="330" y="577" class="s" text-anchor="middle">servo + Motoron</text>
+        <path d="M330 588 V620" class="wa" marker-end="url(#fra)"/>
+
+        <!-- N5 sleep -->
+        <rect x="240" y="620" width="180" height="40" rx="3" class="box"/>
+        <text x="330" y="645" class="tc" text-anchor="middle">sleep 10 ms</text>
+
+        <!-- loop back -->
+        <path d="M240 640 H200 V36 H240" class="w" marker-end="url(#fr)"/>
+      </svg>
